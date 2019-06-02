@@ -1,0 +1,68 @@
+<app-header-app></app-header-app>
+<!-- Editable table -->
+<div class="card" *ngIf="!show">
+    <h3 class="card-header text-center font-weight-bold py-4">Student List</h3>
+    <div class="card-body">
+        <div id="table" class="table-editable">
+
+            <table class="table table-bordered table-responsive-md table-striped text-center">
+                <tr>
+                    <th class="text-center" hidden>id</th>
+                    <th class="text-center">Studen Name</th>
+                    <th class="text-center">Age</th>
+                    <th class="text-center">Studen Addr</th>
+                    <th class="text-center">Action</th>
+                </tr>
+                <tr *ngFor="let obj of studentList">
+                    <td hidden>
+                        <span>{{obj.id}}</span>
+                    </td>
+                    <td>
+                        <span>{{obj.studentName}}</span>
+                    </td>
+                    <td>
+                        <span>{{obj.studentAge}}</span>
+                    </td>
+                    <td>
+                        <span>{{obj.studentAddr}}</span>
+                    </td>
+                    <td>
+                        <span class="table-remove">
+                            <button type="button" mat-raised-button color="primary" rounded="true" size="sm" 
+                                (click)="editStudent(obj)">Edit</button>
+                            <button type="button" mat-raised-button color="warn" rounded="true" size="sm" class="my-0"
+                                (click)="removeStudent(obj.id)">Remove</button>
+                            <button type="button" mat-raised-button color="primary" rounded="true" size="sm" class="my-0"
+                                (click)="addStudent()">Add</button>
+                        </span>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+</div>
+<div *ngIf="show">
+    <mat-card class="my-card">
+            <h3 class="card-header text-center font-weight-bold py-4">Student Edit</h3>
+        <mat-card-content>
+            <form class="my-form">
+                <mat-form-field class="full-width">
+                    <mat-label>Name</mat-label>
+                    <input matInput placeholder="Name" name="studentName" [(ngModel)]="data.studentName">
+                </mat-form-field>
+                <mat-form-field class="full-width">
+                    <mat-label>Addres</mat-label>
+                    <input matInput placeholder="Age" name="studentAddr" [(ngModel)]="data.studentAddr">
+                </mat-form-field>
+                <mat-form-field class="full-width">
+                        <mat-label>Age</mat-label>
+                        <input matInput placeholder="Age" name="studentAge" [(ngModel)]="data.studentAge">
+                    </mat-form-field>
+            </form>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button (click)="update(data)" color="primary">LOGIN</button>
+        </mat-card-actions>
+    </mat-card>
+</div>
